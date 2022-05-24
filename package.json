@@ -24,8 +24,6 @@
         "vue-loader": "^17.0.0"
     },
     "dependencies": {
-        "primeicons": "^5.0.0",
-        "primevue": "^3.12.6",
         "vue-template-compiler": "^2.6.11"
     }
 }
