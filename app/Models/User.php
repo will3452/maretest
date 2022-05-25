@@ -52,4 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Interest::class);
     }
+
+    public function getNameAttribute()
+    {
+        return "$this->first_name $this->last_name";
+    }
 }
