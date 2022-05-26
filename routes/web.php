@@ -11,5 +11,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 
 Route::view('about', 'about')->name('about');
 
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])
-->name('profile');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+
+Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']);
