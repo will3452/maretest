@@ -64,6 +64,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Profile::class);
     }
     public function name(){
-        return Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
+        return ucwords(Auth::User()->first_name . ' ' . Auth::User()->last_name);
+        
     }
 }

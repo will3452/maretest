@@ -32,21 +32,8 @@ class ProfileController extends Controller
             'user' => $user,
         ]);
     }
-
     public function store(Request $request){
 
-        //methods request
-        // guessExtension();
-        // store();
-        // assStore();
-        // storePublicly();
-        // move();
-        // getClientOriginalName();
-        // getClientMimeType();
-        //guessClientExtension();
-        //getSize();
-        //getError();
-        //isValid();
 
         $request->validate([
 
@@ -73,7 +60,7 @@ class ProfileController extends Controller
 
                 Profile::where('user_id', auth()->id())->first()->update(['image'=>$newimagename]);
 
-                return $this->index();
+               return back(); 
 
             }
 
@@ -86,7 +73,7 @@ class ProfileController extends Controller
     
             Profile::where('user_id', auth()->id())->first()->update(['image'=>$newimagename]);
 
-            return $this->index();
+           return back(); 
         }
 
       
