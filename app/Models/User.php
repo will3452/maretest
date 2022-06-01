@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -27,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'barangay',
         'password',
+        'type',
     ];
 
     /**
@@ -47,7 +49,25 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+  
+  protected static function boot(){
+        
+        parent::boot();
 
+        static::created(function($user){
+            $user->profile()->create([
+                'title' => $user->id,
+            ]);
+        });
+    }
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+    public function name(){
+
+        return ucwords(Auth::User()->first_name . ' ' . Auth::User()->last_name);
+    }
+  
     public function interests()
     {
         return $this->hasMany(Interest::class);

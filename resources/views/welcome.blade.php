@@ -57,6 +57,15 @@
         </li> --}}
 
       </ul>
+      @if (Route::has('login') && Auth::check())
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="{{route('home')}}">
+                {{ Auth::User()->name() }}
+            </a>
+        </li>
+      </ul>
+      @else
       <ul class="nav navbar-nav navbar-right">
             <li>
                 <a href="{{route('about')}}">
@@ -74,7 +83,7 @@
                 </a>
             </li>
        </ul>
-
+       @endif
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
 </nav>
