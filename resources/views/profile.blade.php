@@ -10,9 +10,9 @@
                     @if ($user->profile->image==null)
                     <img class="img-thumbnail" style="width:150px; height:150px; object-fit: cover;" src="/images/laravel.png" alt="">
                     @else
-                        <img class="img-thumbnail" style="width:150px; height:150px; border-radius:50%; object-fit: cover;" src="/images/{{ $user->profile->image }}" alt="">
+                        <img class="img-thumbnail" style="width:150px; height:150px; border-radius:50%; object-fit: cover;" src="{{ $user->profile->getPublicImage() }}" alt="">
                     @endif
-                    <h3 class="text-center mt-3">{{ Auth::User()->name(); }}</h3> 
+                    <h3 class="text-center mt-3">{{ Auth::User()->name(); }}</h3>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="/profile" enctype="multipart/form-data">

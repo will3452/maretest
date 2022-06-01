@@ -32,52 +32,30 @@ class ProfileController extends Controller
             'user' => $user,
         ]);
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
 
         $request->validate([
-
             'image' => 'required|mimes:jpg,png,jpeg:max:5048'
-
         ]);
 
-        $newimagename = time() . '-' . $request->image->getClientOriginalName();
+        $image = $request->image->store('public');
 
-        $checkimageexist = Profile::where('user_id', auth()->id())->first();
+        $isProfileIsExisting = Profile::where('user_id', auth()->id())->exists();
 
-        $oldimage = $checkimageexist->image;
+        if ($isProfileIsExisting) {
+            auth()->user()->profile()->update([
+                'image' => $image,
+            ]);
 
-        if(!$oldimage==null){
-
-           
-            $image_path = public_path("images/{$oldimage}");
-
-            if (file_exists($image_path)) {
-
-                unlink($image_path);
-
-                $request->image->move(public_path('images'), $newimagename);
-
-                Profile::where('user_id', auth()->id())->first()->update(['image'=>$newimagename]);
-
-               return back(); 
-
-            }
-
-
-
-        }
-        else{
-
-            $request->image->move(public_path('images'), $newimagename);
-    
-            Profile::where('user_id', auth()->id())->first()->update(['image'=>$newimagename]);
-
-           return back(); 
+            return back();
         }
 
-      
+        auth()->user()->profile()->create([
+            'image' => $image,
+        ]);
 
-      
+        return back();
     }
 }
