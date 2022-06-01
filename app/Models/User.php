@@ -49,8 +49,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    protected static function boot(){
+  
+  protected static function boot(){
         
         parent::boot();
 
@@ -66,6 +66,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function name(){
 
         return ucwords(Auth::User()->first_name . ' ' . Auth::User()->last_name);
-        
+    }
+  
+    public function interests()
+    {
+        return $this->hasMany(Interest::class);
+    }
+
+    public function getNameAttribute()
+    {
+        return "$this->first_name $this->last_name";
     }
 }
