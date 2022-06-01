@@ -17,4 +17,10 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getPublicImage() {
+        $image = $this->image;
+        $imageArray = explode('/', $image);
+        return "/storage/" . end($imageArray);
+    }
 }
