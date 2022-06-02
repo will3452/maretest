@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 
 Auth::routes(['verify' => true]);
+Route::get('/logout', function () {
+    auth()->logout();
+    return redirect()->to('/');
+})->middleware(['auth']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 ->name('home');
