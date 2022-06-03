@@ -12,5 +12,15 @@ class Post extends Model
         'user_id',
         'title',
         'body',
+        'image'
     ];
+    public function user()
+    {
+        return $this->belongsTo(Post::class, 'user_id');
+    }
+    public function getPublicImage(){
+        $image = $this->image;
+        $imageArray = explode('/', $image);
+        return "/storage/" . end($imageArray);
+    }
 }

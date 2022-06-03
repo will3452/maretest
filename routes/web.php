@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\InterestController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\InterestController;
 
 Route::view('/', 'welcome');
 
@@ -17,6 +18,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 Route::view('about', 'about')->name('about');
 
 Route::get('/post', [App\Http\Controllers\PostController::class, 'index'])->name('post');
+Route::post('/post', [PostController::class, 'store']);
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']);
 Route::get('/interest', [InterestController::class, 'index'])->name('interest.index');

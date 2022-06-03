@@ -7,6 +7,7 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
             @foreach (\App\Models\Post::latest()->limit(5)->get() as $item)
+                <img class="img-thumbnail" style="width:auto; height:300px; object-fit: cover;" src="{{$item->getPublicImage()}}" alt="">
                 <x-post-review :post="$item"></x-post-review>
             @endforeach
             @if (\App\Models\Post::count())
