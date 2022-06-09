@@ -16,9 +16,9 @@ class CreateAnnouncementTable extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->cascade()->references('id')->on('users')->onDelete('cascade');
-            $table->string('description');
-            $table->string('where');
-            $table->string('date');
+            $table->string('description')->nullable();
+            $table->string('where')->nullable();;
+            $table->string('date')->nullable();;
             $table->timestamps();
         });
     }

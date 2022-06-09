@@ -24,8 +24,13 @@ class AnnouncementController extends Controller
             'location' => 'required',
         ]);
 
-        Announcement::create(['user_id' => auth()->id(), 'description' => $data['description'], 'date' => $data['date'], 'where' => $data['location']]);
-        return back()->withSuccess('Announcement has been upload!');
+        Announcement::create([
+            'user_id' => auth()->id(), 
+            'description' => $data['description'], 
+            'date' => $data['date'], 
+            'where' => $data['location']
+        ]);
+        return back()->withSuccess('Success');
       
       
     
