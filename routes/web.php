@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\InterestController;
+use App\Http\Controllers\AnnouncementController;
 
 Route::view('/', 'welcome');
 
@@ -23,3 +24,5 @@ Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])
 Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']);
 Route::get('/interest', [InterestController::class, 'index'])->name('interest.index');
 Route::post('/interest', [InterestController::class, 'store']);
+Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement');
+Route::post('/announcement', [AnnouncementController::class, 'store']);

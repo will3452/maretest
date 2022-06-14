@@ -80,5 +80,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getNameAttribute()
     {
         return "$this->first_name $this->last_name";
+    public function announcement(){
+        return $this->hasMany(Announcement::class);
     }
 }
