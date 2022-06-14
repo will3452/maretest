@@ -26,7 +26,12 @@ class PostController extends Controller
 
         $image = $request->image->store('public');
 
-        Post::create(['user_id' => auth()->id(), 'title' => $data['title'], 'body' => $data['body'], 'image' => $image]);
+        Post::create([
+            'user_id' => auth()->id(),
+            'title' => $data['title'],
+            'body' => $data['body'],
+            'image' => $image
+        ]);
         return back()->withSuccess('Post has been added!');
     
     }
